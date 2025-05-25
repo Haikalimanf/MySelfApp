@@ -7,7 +7,23 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_daily_activity">Daily Activity</string>
+    <string name="menu_music">Music</string>
+
+
     <string name="email">haikalimanf@gmail.com</string>
     <string name="nama">Haikal Iman Firdaus</string>
+    <string name="hello_blank_fragment">hello_blank_fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="greeting">Hello Everyone!</string>
+    <string name="welcome_text">Welcome to My Personal \n Space.</string>
+
+    <string name="next">Next</string>
+
+    <string name="description_page2_onboarding"><![CDATA[Hobbies, Dreams, & Daily \n Adventures.]]></string>
+    <string name="title_page2_onboarding">Explore My World</string>
+    <string name="title_page3_onboarding"><![CDATA[Connect & Discover]]></string>
+    <string name="finish">Finish</string>
 </resources>
