@@ -26,4 +26,20 @@
     <string name="title_page2_onboarding">Explore My World</string>
     <string name="title_page3_onboarding"><![CDATA[Connect & Discover]]></string>
     <string name="finish">Finish</string>
+
+
+    <string name="description">Description</string>
+    <string name="description_result">Saya adalah Mahasiswa S1 Teknik Informatika di Universitas Komputer Indonesia dengan minat yang kuat pada pengembangan perangkat lunak mobile dan machine learning. Selama pendidikan saya, saya telah mengasah kemampuan saya dalam berbagai teknologi dan bahasa pemrograman yang relevan dengan bidang-bidang ini. Saya bersemangat untuk terus belajar dan meningkatkan kemampuan saya, dan saya ingin sekali menghadapi tantangan baru di industri teknologi.</string>
+    <string name="hobi">Hobi</string>
+    <string name="gym">Gym</string>
+    <string name="running">Running</string>
+    <string name="read">Read</string>
+    <string name="ketertarikan">Ketertarikan</string>
+    <string name="mobile_dev">Mobile Dev</string>
+    <string name="machine_learning">ML</string>
+    <string name="back_end">Back End</string>
+    <string name="cita_cita">Cita cita</string>
+    <string name="pergi_ke_japan">Pergi ke Japan</string>
+    <string name="pergi_ke_old_trafford">Pergi ke Old Trafford</string>
+
 </resources>

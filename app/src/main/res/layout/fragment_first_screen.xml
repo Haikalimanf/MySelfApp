@@ -6,12 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.walkthrough.screen.FirstScreen">
 
-    <ImageView
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/imageView"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:lottie_fileName="animation_page1.json"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
