@@ -1,60 +1,119 @@
 package com.example.myselfapp.ui.music
 
+import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myselfapp.R
+import com.example.myselfapp.adapter.MusicAdapter
+import com.example.myselfapp.data.Data
+import com.example.myselfapp.data.Music
+import com.example.myselfapp.data.Video
+import com.example.myselfapp.databinding.FragmentMusicBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class MusicFragment : Fragment(), MusicAdapter.MusicInteractionListener {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MusicFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class MusicFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding: FragmentMusicBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var musicAdapter: MusicAdapter
+    private lateinit var videoAdapter: VideoAdapter
+
+    private lateinit var musicList : List<Music>
+    private lateinit var videoList : List<Video>
+
+    private var mediaPlayer: MediaPlayer? = null
+    private var currentPlayingMusicResId: Int? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_music, container, false)
+        _binding = FragmentMusicBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MusicFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MusicFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        mediaPlayer = MediaPlayer()
+
+        setupRvMusic()
+        setupRvVideo()
     }
+
+    private fun setupRvMusic() {
+        musicList = Data.dataMusic
+
+        musicAdapter = MusicAdapter(musicList, this)
+        binding.rvMusic.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = musicAdapter
+        }
+    }
+
+    private fun setupRvVideo() {
+        videoList = Data.dataVideo
+
+        videoAdapter = VideoAdapter(videoList, viewLifecycleOwner.lifecycle)
+        binding.rvVideo.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = videoAdapter
+        }
+    }
+
+    override fun onMusicClick(musicResourceId: Int) {
+        if (mediaPlayer == null) {
+            mediaPlayer = MediaPlayer()
+        }
+
+        try {
+            if (currentPlayingMusicResId == musicResourceId) { // Lagu yang sama diklik
+                if (mediaPlayer!!.isPlaying) {
+                    mediaPlayer!!.pause()
+                    musicAdapter.updatePlaybackState(musicResourceId, false)
+                } else {
+                    mediaPlayer!!.start()
+                    musicAdapter.updatePlaybackState(musicResourceId, true)
+                }
+            } else {
+                mediaPlayer!!.reset()
+                val uri = Uri.parse("android.resource://${requireActivity().packageName}/$musicResourceId")
+                mediaPlayer!!.setDataSource(requireContext(), uri)
+                mediaPlayer!!.prepare()
+                mediaPlayer!!.start()
+                musicAdapter.updatePlaybackState(musicResourceId, true)
+                currentPlayingMusicResId = musicResourceId
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(requireContext(), "Error memutar musik: ${e.message}", Toast.LENGTH_SHORT).show()
+            musicAdapter.updatePlaybackState(currentPlayingMusicResId, false)
+            currentPlayingMusicResId = null
+        }
+        mediaPlayer?.setOnCompletionListener {
+            musicAdapter.updatePlaybackState(currentPlayingMusicResId, false)
+            currentPlayingMusicResId = null
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mediaPlayer?.stop()
+        mediaPlayer?.release()
+        mediaPlayer = null
+        if (::musicAdapter.isInitialized) {
+            binding.rvMusic.adapter = null
+        }
+        if (::videoAdapter.isInitialized) {
+            binding.rvVideo.adapter = null
+        }
+        _binding = null
+    }
+
 }

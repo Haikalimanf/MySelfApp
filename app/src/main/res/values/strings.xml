@@ -41,5 +41,12 @@
     <string name="cita_cita">Cita cita</string>
     <string name="pergi_ke_japan">Pergi ke Japan</string>
     <string name="pergi_ke_old_trafford">Pergi ke Old Trafford</string>
+    <string name="address">Bandung, Indonesia</string>
+    <string name="kontak">Kontak</string>
+    <string name="find_me">Find Me</string>
+    <string name="about">About</string>
+    <string name="version_0_1">Version 0.1</string>
+    <string name="musik_kesukaan_saya">Musik Kesukaan saya</string>
+    <string name="video_favorite">Video Favorite</string>
 
 </resources>
