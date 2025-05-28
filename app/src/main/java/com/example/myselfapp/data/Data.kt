@@ -4,6 +4,41 @@ import com.example.myselfapp.R
 
 object Data {
 
+    val dataDaily = listOf(
+        Daily(
+            title = "GYM",
+            image = R.drawable.jogging
+        ),
+        Daily(
+            title = "Mengoding",
+            image = R.drawable.mengoding
+        ),
+        Daily(
+            title = "Makan",
+            image = R.drawable.eat
+        )
+
+    )
+
+    val dataFriend = listOf(
+        Friend(
+            name = "Arik Hikari Hidayatullah",
+            image = R.drawable.arik
+        ),
+        Friend(
+            name = "Dewa Tri sakti",
+            image = R.drawable.dewa
+        ),
+        Friend(
+            name = "Raditya El Wall",
+            image = R.drawable.elwal
+        ),
+        Friend(
+            name = "Pa Ebj Nugraha",
+            image = R.drawable.paebj
+        ),
+    )
+
     val dataVideo = listOf(
         Video(
             title = "TUTORIAL ANDROID DASAR (BAHASA INDONESIA)",
@@ -31,6 +66,16 @@ object Data {
             url = R.raw.about_you
         )
 
+    )
+
+
+    val dataGallery = listOf(
+        Gallery("https://raw.githubusercontent.com/Haikalimanf/AssetFotoIconSalon/refs/heads/main/photo_2024-11-17_11-27-59.jpg"),
+        Gallery("https://raw.githubusercontent.com/Haikalimanf/AssetFotoIconSalon/refs/heads/main/photo_2024-11-17_08-58-06.jpg"),
+        Gallery("https://raw.githubusercontent.com/Haikalimanf/AssetFotoIconSalon/refs/heads/main/WhatsApp%20Image%202025-05-04%20at%2021.06.27_1666fef6.jpg"),
+        Gallery("https://raw.githubusercontent.com/Haikalimanf/AssetFotoIconSalon/refs/heads/main/SemiFormal.jpg"),
+        Gallery("https://raw.githubusercontent.com/Haikalimanf/AssetFotoIconSalon/refs/heads/main/IMG_20240916_061332.jpg"),
+        Gallery("https://raw.githubusercontent.com/Haikalimanf/AssetFotoIconSalon/refs/heads/main/Firefly%2020250216154941.png"),
     )
 
 }

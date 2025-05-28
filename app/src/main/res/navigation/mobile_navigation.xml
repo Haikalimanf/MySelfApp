@@ -30,6 +30,4 @@
         android:name="com.example.myselfapp.ui.daily_activity.DailyActivityFragment"
         android:label="@string/menu_daily_activity"
         tools:layout="@layout/fragment_daily_activity" />
-
-
 </navigation>
